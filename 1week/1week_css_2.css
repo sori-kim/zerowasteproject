@@ -1,0 +1,66 @@
+body {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+.header {
+  border-radius: 10px;
+  width: 600px;
+  height: 300px;
+  background-position: center;
+  /* 이미지가 짤리지 않도록 위치를 가운데로 고정시키는것  */
+  background-repeat: no-repeat;
+  /* 백그라운드 이미지를 타일처럼 반복하지 않고 단일이미지만 하나 넣기 */
+  background-image: url("http://www.forest.go.kr/newkfsweb/cmm/fms/FileDown.do?atchFileId=FILE_000000010008639&fileSn=0");
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* flexbox: 자식태그들을 정렬하기 위해 부모에다가 그 명령을 하여 구도를 설정함 
+flex-direction: 플렉스의 방향을 나타내줌 
+row: 열(가로축)로 정렬,column:행(세로축)으로 정렬
+
+justify-contents: 축 방향 정렬 (좌우정렬) 기준은 flex-direction에 따라 달라짐. 
+ 1) flex-start: 축의 시작에서 시작하는 방향
+ 2) flex-end: 축의 아래쪽에서 시작하는 방향
+ 3) space-between: flex의 핵심 
+ 자식들의 간격을 1:1로 나뉘어서 적용 (양 끝으로 태그들을 정렬하고싶을때)
+align-items: 축의 90도 방향 방향 정렬 (위아래정렬)
+ 1) flex-start 
+ 2) flex-end
+
+ flex direction에 대해 기본값은 컬럼이 적용되고 단, 부모 속성을 우선적으로 상속받는다. 
+ justify contents와 align-items의 기본값은 flex-start.
+ 다른거 다 모르겠고 어렵다 하면 justify-contents와 align-items를 center로 설정. 
+
+
+*/
+
+.header h1,
+.header p {
+  /* color: rgba(255, 255, 255, 1); 
+  컬러값은 rgb값 또는 헥스값(16진법)으로 쓰면 좀 더 정교하다. */
+  color: #ffffff;
+  text-align: center;
+}
+
+.contents {
+  margin-top: 20px;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+#button {
+  width: 180px;
+  height: 40px;
+  background: #fcfcfc;
+  color: #000000;
+  font-size: 16px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(1px, 3px, 10px, 0.2);
+  /* 그림자를 x,y축을 얼마나줄지, 얼마나 넓게 그림자를 줄지 결정하고(blur) 마지막은 그림자색깔 */
+}

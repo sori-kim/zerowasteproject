@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>로그인페이지</title>
+    <style>
+      /* 태그명을 바로 가리킬 때 */
+      body {
+        background-color: black;
+        color: white;
+      }
+      /* class를 만들어 가리킬 때 */
+      .mytitle {
+        color: yellow;
+      }
+      /* id를 만들어 가리킬때 */
+      #mytitle {
+      }
+
+      div input {
+        color: white;
+        /* div 태그 안의 input 태그를 선택한다.    
+        color: 폰트색상
+        font-size: 폰트크기
+        f*/
+      }
+
+      div > input {
+        /* div 태그 안에 있는 바로 직전의 자식태그를 선택한다.  */
+        color: wheat;
+      }
+
+      .login-button {
+        margin-top: 30px;
+        padding: 10px 20px;
+        /* margin: 컨텐츠의 바깥으로 간격을 주는것 (top, bottom, left, right)
+        
+        margin: 10px 20px 30px 40px; 시계방향으로 위,오른쪽,아래,왼쪽 순서로 숫자를 입력하면 적용이 된다.
+        margin: 10px 20px; 위아래, 좌우값 순서대로 적용이 된다. 패딩도 동일함 
+
+        padding: 컨텐츠의 내부에 간격을 주는 것.  */
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="mytitle">
+      로그인 페이지
+    </h1>
+    <div class="mytitle">
+      ID:
+      <input type="text" />
+      PW:
+      <input type="password" />
+    </div>
+    <button class="login-button">로그인하기</button>
+  </body>
+</html>
+<!-- 
+    part2. CSS
+   html과 css은 계속 발전하며 버전업이 된다. 현재 html5, css3 
+
+   CSS에 대한 중요한 개념: selector 
+   id / class
+   id: unique해야한다. 하나의 id이름으로 한번만 선언가능
+   class: unique할 필요 없음.
+   공통점은 한개 이상의 아이디/클래스값을 선언할 수 있다.
+   <div id= test1 test2>
+    두개의 id를 선언한 것. 
+    -->
