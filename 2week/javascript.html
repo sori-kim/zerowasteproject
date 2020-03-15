@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Webpage Title -->
+    <title>Hello, world!</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 구글폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- style -->
+    <style type="text/css">
+      * {
+        font-family: "Stylish", sans-serif;
+      }
+
+      .wrap {
+        width: 900px;
+        margin: auto;
+      }
+
+      .comment {
+        color: blue;
+        font-weight: bold;
+      }
+
+      .form-post {
+        max-width: 500px;
+        padding: 2rem;
+        margin: 2rem auto;
+        border-color: #e9ecef;
+        border-radius: 0.3rem;
+        border: solid;
+        display: none;
+      }
+    </style>
+
+    <script>
+      let num = 1; //변수선언을 함수밖에 하는데에는 이유가 있다.
+      function hey() {
+        //Q1. 기사 저장 버튼을 누를때마다 1씩 증가해서 alert
+        alert(num);
+        num += 1;
+      }
+
+      //Q2. 배열에서 특정한 아이템이 들어있는 개수 찾기
+      let a = [
+        "사과",
+        "감",
+        "감",
+        "배",
+        "포도",
+        "포도",
+        "딸기",
+        "포도",
+        "감",
+        "수박",
+        "딸기"
+      ];
+      let strawberry = a.filter(item => item === "딸기").length;
+
+      //Q3. 0부터 n-1까지 더하는 함수 만들기
+      function get_sum(n) {
+        let result = 0;
+        for (let i = 0; i < n; i++) {
+          result = result + i;
+          // 반복문을 돌면서, result에다 i를 더해줍니다.
+          // result += i; 라고 줄여 쓸 수 있습니다.
+        }
+        return result;
+      }
+
+      //Q4 미세먼지
+
+      let mise = [
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "도심권",
+          MSRSTE_NM: "중구",
+          PM10: 22,
+          PM25: 14,
+          O3: 0.018,
+          NO2: 0.015,
+          CO: 0.4,
+          SO2: 0.002,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 31,
+          ARPLT_MAIN: "O3"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "도심권",
+          MSRSTE_NM: "종로구",
+          PM10: 24,
+          PM25: 18,
+          O3: 0.013,
+          NO2: 0.016,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 39,
+          ARPLT_MAIN: "PM25"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "도심권",
+          MSRSTE_NM: "용산구",
+          PM10: 0,
+          PM25: 15,
+          O3: 0.012,
+          NO2: 0.027,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "점검중",
+          IDEX_MVL: -99,
+          ARPLT_MAIN: "점검중"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서북권",
+          MSRSTE_NM: "은평구",
+          PM10: 36,
+          PM25: 14,
+          O3: 0.019,
+          NO2: 0.018,
+          CO: 0.5,
+          SO2: 0.005,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 42,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서북권",
+          MSRSTE_NM: "서대문구",
+          PM10: 28,
+          PM25: 9,
+          O3: 0.018,
+          NO2: 0.015,
+          CO: 0.6,
+          SO2: 0.004,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 37,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서북권",
+          MSRSTE_NM: "마포구",
+          PM10: 26,
+          PM25: 8,
+          O3: 0.012,
+          NO2: 0.021,
+          CO: 0.5,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 36,
+          ARPLT_MAIN: "NO2"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동북권",
+          MSRSTE_NM: "광진구",
+          PM10: 17,
+          PM25: 9,
+          O3: 0.018,
+          NO2: 0.016,
+          CO: 0.6,
+          SO2: 0.001,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 31,
+          ARPLT_MAIN: "O3"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동북권",
+          MSRSTE_NM: "성동구",
+          PM10: 21,
+          PM25: 12,
+          O3: 0.018,
+          NO2: 0.017,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 33,
+          ARPLT_MAIN: "PM25"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동북권",
+          MSRSTE_NM: "중랑구",
+          PM10: 27,
+          PM25: 10,
+          O3: 0.015,
+          NO2: 0.019,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 34,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동북권",
+          MSRSTE_NM: "동대문구",
+          PM10: 26,
+          PM25: 9,
+          O3: 0.016,
+          NO2: 0.017,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 34,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동북권",
+          MSRSTE_NM: "성북구",
+          PM10: 27,
+          PM25: 8,
+          O3: 0.022,
+          NO2: 0.014,
+          CO: 0.5,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 37,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동북권",
+          MSRSTE_NM: "도봉구",
+          PM10: 25,
+          PM25: 12,
+          O3: 0.024,
+          NO2: 0.011,
+          CO: 0.3,
+          SO2: 0.002,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 41,
+          ARPLT_MAIN: "O3"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동북권",
+          MSRSTE_NM: "강북구",
+          PM10: 30,
+          PM25: 15,
+          O3: 0.022,
+          NO2: 0.02,
+          CO: 0.4,
+          SO2: 0.002,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 39,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동북권",
+          MSRSTE_NM: "노원구",
+          PM10: 21,
+          PM25: 14,
+          O3: 0.017,
+          NO2: 0.016,
+          CO: 0.4,
+          SO2: 0.004,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 36,
+          ARPLT_MAIN: "PM25"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서남권",
+          MSRSTE_NM: "강서구",
+          PM10: 36,
+          PM25: 16,
+          O3: 0.021,
+          NO2: 0.013,
+          CO: 0.4,
+          SO2: 0.004,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 42,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서남권",
+          MSRSTE_NM: "구로구",
+          PM10: 23,
+          PM25: 10,
+          O3: 0.022,
+          NO2: 0.016,
+          CO: 0.3,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 37,
+          ARPLT_MAIN: "O3"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서남권",
+          MSRSTE_NM: "영등포구",
+          PM10: 29,
+          PM25: 15,
+          O3: 0.01,
+          NO2: 0.022,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 41,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서남권",
+          MSRSTE_NM: "동작구",
+          PM10: 29,
+          PM25: 15,
+          O3: 0.012,
+          NO2: 0.023,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 41,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서남권",
+          MSRSTE_NM: "관악구",
+          PM10: 27,
+          PM25: 12,
+          O3: 0.012,
+          NO2: 0.022,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 37,
+          ARPLT_MAIN: "NO2"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서남권",
+          MSRSTE_NM: "금천구",
+          PM10: 25,
+          PM25: 15,
+          O3: 0.015,
+          NO2: 0.02,
+          CO: 0.4,
+          SO2: 0.004,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 43,
+          ARPLT_MAIN: "PM25"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "서남권",
+          MSRSTE_NM: "양천구",
+          PM10: 0,
+          PM25: 14,
+          O3: 0.016,
+          NO2: 0.017,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "점검중",
+          IDEX_MVL: -99,
+          ARPLT_MAIN: "점검중"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동남권",
+          MSRSTE_NM: "강남구",
+          PM10: 31,
+          PM25: 16,
+          O3: 0.018,
+          NO2: 0.018,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 39,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동남권",
+          MSRSTE_NM: "서초구",
+          PM10: 34,
+          PM25: 13,
+          O3: 0.024,
+          NO2: 0.019,
+          CO: 0.3,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 41,
+          ARPLT_MAIN: "PM10"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동남권",
+          MSRSTE_NM: "송파구",
+          PM10: 25,
+          PM25: 6,
+          O3: 0.014,
+          NO2: 0.025,
+          CO: 0.4,
+          SO2: 0.003,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 42,
+          ARPLT_MAIN: "NO2"
+        },
+        {
+          MSRDT: "201912052100",
+          MSRRGN_NM: "동남권",
+          MSRSTE_NM: "강동구",
+          PM10: 24,
+          PM25: 14,
+          O3: 0.016,
+          NO2: 0.02,
+          CO: 0.4,
+          SO2: 0.002,
+          IDEX_NM: "좋음",
+          IDEX_MVL: 39,
+          ARPLT_MAIN: "PM25"
+        }
+      ];
+      let results = [];
+      for (let i = 0; i < mise.length; i++) {
+        if (mise[i]["INDEX_MVL"] < 50) {
+          results.push(mise[i]["MSRSTE_NM"]);
+        }
+      }
+      console.log(results);
+
+      mise
+        .filter(item => item["INDEX_MVL"] < 50)
+        .map(item => item["MSRSTE_NM"]);
+
+      //제이쿼리
+
+      function toggleBox() {
+        let box = $("#post-box");
+        if (box.is(":visible") === true) {
+          box.hide();
+          $("#post-button").text("포스팅박스 열기");
+        } else {
+          box.show();
+          $("#post-button").text("포스팅박스 닫기");
+        }
+      }
+
+      function addCard() {
+        let article = $("#input_article").val();
+        let comment = $("#input_comment").val();
+        let temp_html = `<div class="card">
+              <img class="card-img-top" src="https://www.fodors.com/wp-content/uploads/2018/10/4_UltimateRome_PiazzaNavona-975x650.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">${article}</h5>
+                <p class="card-text">여기에 기사 내용이 들어가겠죠</p>
+                <p class="card-text comment">${comment}</p>
+              </div>
+            </div>
+          </div>`;
+        $("#cards-box").append(temp_html);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="jumbotron">
+        <h1 class="display-4">나홀로 링크 메모장!</h1>
+        <p class="lead">
+          중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다
+        </p>
+        <hr class="my-4" />
+        <p class="lead">
+          <a
+            onclick="toggleBox()"
+            class="btn btn-primary btn-lg"
+            href="#"
+            role="button"
+            id="post-button"
+            >포스팅박스 열기</a
+          >
+        </p>
+      </div>
+      <div class="form-post" id="post-box">
+        <div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">아티클 URL</label>
+            <input id="input_article" class="form-control" placeholder="" />
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">간단 코멘트</label>
+            <textarea
+              id="input_comment"
+              class="form-control"
+              rows="2"
+            ></textarea>
+          </div>
+          <button onclick=" addCard()" type="button" class="btn btn-primary">
+            <!-- onclick은 button 태그에만 사용가능한 html 속성 -->
+            기사저장
+          </button>
+        </div>
+      </div>
+      <div class="card-columns" id="cards-box"></div>
+    </div>
+  </body>
+</html>
