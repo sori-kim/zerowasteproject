@@ -7,6 +7,7 @@
     <title>강원도 청정감자</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="hw_potato.css" />
+
     <link
       href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Noto+Serif+KR|Poor+Story&display=swap"
       rel="stylesheet"
@@ -31,14 +32,38 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      function buyBtn() {
+        let name = $("#user").val();
+        let address = $("#address").val();
+        let phone = $("#phone").val();
+        let amount = $("#amount").val();
+        let amount0 = $("#none").val();
+
+        if (name === "") {
+          alert("성함을 입력하세요!");
+          $("#user").focus();
+        } else if (amount === amount0) {
+          alert("수량을 선택하세요!");
+          $("#amount").focus();
+        } else if (address === "") {
+          alert("주소를 입력하세요!");
+          $("#address").focus();
+        } else if (phone === "") {
+          alert("연락처를 입력하세요!");
+          $("#phone").focus();
+        } else {
+          alert("구매가 완료되었습니다");
+        }
+      }
+    </script>
   </head>
 
   <body>
     <div class="container">
       <header>
-        <div class="title">
-          <h1>강원도 청정 감자 핵감자! 핵세일!</h1>
-        </div>
+        <span class="title"> 강원도산 청정 감자<br />핵감자 🌱 핵세일! </span>
       </header>
       <div class="images">
         <img
@@ -52,7 +77,7 @@
           src="http://flexible.img.hani.co.kr/flexible/normal/970/647/imgdb/original/2020/0312/20200312501932.jpg"
         />
       </div>
-      <div>
+      <article>
         <div class="article_1">
           <p>
             못된 코로나 바이러스로 강원도 청정 감자 재고 11,000톤 대방출합니다!
@@ -79,36 +104,67 @@
             <li>구매수량제한:1인 2Box</li>
           </ul>
 
-        <div class="mascot">
-          <img width="300" src="https://img.theqoo.net/img/cmCks.jpg" />
+          <div class="mascot">
+            <img width="300" src="https://img.theqoo.net/img/cmCks.jpg" />
+          </div>
         </div>
-      </div>
-    </article>
-      <form>
+      </article>
+
+      <form class="buyForm">
         <span class="form_title">🥔 구매 신청서 🥔</span>
 
         <div class="form-group">
-          <label for="usr">주문자 이름</label>
-          <input type="text" class="form-control" id="usr" />
+          <label for="user">주문자 이름</label>
+          <input type="text" class="form-control" id="user" />
         </div>
         <div class="form-group">
           <label for="amount">주문 수량</label>
 
           <select id="amount">
+            <option id="none" value="0Box">--수량을 선택하세요--</option>
             <option value="1Box">1Box</option>
             <option value="2Box">2Box</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="usr">배송받을 주소</label>
+          <label for="address">배송받을 주소</label>
           <input type="text" class="form-control" id="address" />
         </div>
         <div class="form-group">
-          <label for="usr">연락처</label>
-          <input type="text" class="form-control" id="address" />
+          <label for="phone">연락처</label>
+          <input
+            type="text"
+            id="phone"
+            class="form-control bfh-phone"
+            data-format="+1 (ddd) ddd-dddd"
+          />
         </div>
-        <button type="button" class="btn btn-primary btn-lg">구매하기</button>
+        <button onclick="buyBtn()" type="button" class="btn btn-primary btn-lg">
+          구매하기
+        </button>
       </form>
+
+      <div class="formList">
+        <h2>신청자 명단</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>수량</th>
+              <th>주소</th>
+              <th>연락처</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <tr class="trow">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <footer>
         <a href="https://twitter.com/pureumC_" target="block">
