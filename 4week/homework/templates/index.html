@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>강원도 청정감자</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link
+      href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Noto+Serif+KR|Poor+Story&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function buyBtn() {
+        let name = $("#user").val();
+        let address = $("#address").val();
+        let phone = $("#phone").val();
+        let amount = $("#amount").val();
+        let amount0 = $("#none").val();
+
+        if (name === "") {
+          alert("성함을 입력하세요!");
+          $("#user").focus();
+        } else if (amount === amount0) {
+          alert("수량을 선택하세요!");
+          $("#amount").focus();
+        } else if (address === "") {
+          alert("주소를 입력하세요!");
+          $("#address").focus();
+        } else if (phone === "") {
+          alert("연락처를 입력하세요!");
+          $("#phone").focus();
+        } else {
+          alert("구매가 완료되었습니다");
+        }
+      }
+
+      $(document).ready(function(){
+          loadOrder();
+      })
+
+      function loadOrder(){
+          $.ajax({
+              url: '/order',
+              type: 'GET',
+              data: {},
+              success: function(response){
+                  let orders = response["orders"];
+                  // response를 콘솔에 찍어보면 orders안에 값들이 들어있음
+                  for(let i =0; i < orders.length ; i++){
+                      let name = orders[i]["name"];
+                      let amount = orders[i]["amount"];
+                      let address = orders[i]["address"];
+                      let phone = orders[i]["phone"];
+
+                      let html = `
+                        <tr class="trow">
+                            <td>${name}</td>
+                            <td>${amount}</td>
+                            <td>${address}</td>
+                            <td>${phone}</td>
+                        </tr>
+                      `;
+                      $('.tbody').append(html);
+                  }
+              }
+          })
+      }
+
+      function order(){
+          let name = $('#name').val();
+          let amount =$('#amount').val();
+          let address = $('#address').val() ;
+          let phone = $('#phone').val();
+
+            $.ajax({
+              url: '/order',
+              type: 'POST',
+              data: {
+                  name : name,
+                  amount : amount,
+                  address : address,
+                  phone : phone
+              },
+              success: function(response){
+                  console.log(response);
+              }
+          })
+      }
+
+
+
+
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <span class="title"> 강원도산 청정 감자<br />핵감자 🌱 핵세일! </span>
+      </header>
+      <div class="images">
+        <img
+          width="200"
+          height="200"
+          src="https://img1.tmon.kr//cdn3/deals/2019/10/14/2237468518/2237468518_summary_11571020787_c1dd5.jpg"
+        />
+        <img
+          width="300"
+          height="200"
+          src="http://flexible.img.hani.co.kr/flexible/normal/970/647/imgdb/original/2020/0312/20200312501932.jpg"
+        />
+      </div>
+      <article>
+        <div class="article_1">
+          <p>
+            못된 코로나 바이러스로 강원도 청정 감자 재고 11,000톤 대방출합니다!
+            <br />
+            10kg 한 상자에 무려 5,000원! 배송비 없음! <br />
+            강원도 농가도 살리고 코로나 바이러스도 이기자~
+          </p>
+        </div>
+        <div class="article_2">
+          <p>
+            <strong>🚨 추가공지</strong><br />
+            많은 분의 성원에 힘입어 사이트 서버가 터져버렸습니다. <br />
+            여러분! 여러분들을 기다리는 감자는 어디가지 않고 그 자리에서
+            여러분을 기다리고 있습니다. <br />
+            조금만 천천히 접속 부탁드리겠습니다~~
+          </p>
+        </div>
+
+        <div class="article_3">
+          <ul class="speech-bubble">
+            <li>1일판매수량: 8천 개 (10kg, 1Box)</li>
+            <li>판매시작시간: 오전 10시 (주말접수 가능)</li>
+            <li>배송일정: 3.16(월)부터 순차발송</li>
+            <li>구매수량제한:1인 2Box</li>
+          </ul>
+
+          <div class="mascot">
+{#            <img width="300" src="https://img.theqoo.net/img/cmCks.jpg" />#}
+          </div>
+        </div>
+      </article>
+
+      <form class="buyForm">
+        <span class="form_title">🥔 구매 신청서 🥔</span>
+
+        <div class="form-group">
+          <label for="user">주문자 이름</label>
+          <input type="text" class="form-control" id="name" />
+        </div>
+        <div class="form-group">
+          <label for="amount">주문 수량</label>
+
+          <select id="amount">
+            <option id="none" value="0Box">--수량을 선택하세요--</option>
+            <option value="1Box">1Box</option>
+            <option value="2Box">2Box</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="address">배송받을 주소</label>
+          <input type="text" class="form-control" id="address" />
+        </div>
+        <div class="form-group">
+          <label for="phone">연락처</label>
+          <input
+            type="text"
+            id="phone"
+            class="form-control bfh-phone"
+            data-format="+1 (ddd) ddd-dddd"
+          />
+        </div>
+        <button onclick="buyBtn(), order()" type="button" class="btn btn-primary btn-lg">
+          구매하기
+        </button>
+      </form>
+
+      <div class="formList">
+        <h2>신청자 명단</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>수량</th>
+              <th>주소</th>
+              <th>연락처</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+          </tbody>
+        </table>
+      </div>
+
+      <footer>
+        <a href="https://twitter.com/pureumC_" target="block">
+          문의: 강원도청 감자 파는 막내비서 푸름c</a
+        >
+      </footer>
+    </div>
+  </body>
+</html>
