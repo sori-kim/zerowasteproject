@@ -1,8 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
+from flask import Flask, render_template
+app = Flask(__name__)
+
+
 client = MongoClient('localhost', 27017)
 db = client.dbproject
+
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 
 def get_url():  # 키워드 함수
@@ -48,19 +57,23 @@ def get_url():  # 키워드 함수
             for one in product:
                 title = one.select_one('.product-title').text
                 price = one.select_one('.price').text
-                img_tag = one.select_one(
+                img_h = one.select_one(
                     '.product-element-top > a').get('href')
-                img_url = f"https://zerowastestore.com{img_tag}"
+                img_url = f"https://zerowastestore.com{img_h}"
+                img_s = one.select_one(
+                    '.product-element-top > a > img').get('src')
+                img_src = f"https:{img_s}"
+
             # print(j, '쪽')
                 doc = {
-
                     'category': keys[i],
                     'title': title,
                     'price': price,
-                    'img_url': img_url
+                    'img_url': img_url,
+                    'img_src': img_src
                 }
-                db.zerowastestore.insert_one(doc)
+                # db.zerowastestore.insert_one(doc)
 
 
 if __name__ == "__main__":
-    get_url()
+    app.run('0.0.0.0', port=5000, debug=True)

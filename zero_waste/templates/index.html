@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles.css')}}"
+    />
+    <link rel="stylesheet" href="{{url_for('static', filename='reset.css')}}" />
+    <script
+      src="https://kit.fontawesome.com/3ceb02a9a3.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Wasteless</title>
+  </head>
+  <body>
+    <header class="navbar">
+      <nav>
+        <ul>
+          <li>
+            <a href="#"><i class="fas fa-bars btn"></i></a>
+          </li>
+          <li><a class="title underline--magical" href="#"> Wasteless </a></li>
+          <li><a href="#" class="underline--magical"> about</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="sidenav">
+      <div class="category">
+        <a href="#" class="closebtn">
+          <i class="far fa-times-circle fa-2x"></i
+        ></a>
+        <a href="#">Show by Category</a>
+        <a href="mall.html">Cleaning</a>
+        <a href="mall.html">Hair Care</a>
+        <a href="mall.html">Home</a>
+        <a href="mall.html">Makeup</a>
+        <a href="mall.html">Kids & Baby</a>
+        <a href="mall.html">Oral Hygiene</a>
+        <a href="mall.html">Personal Hygiene</a>
+        <a href="mall.html">Skin Care</a>
+        <a href="mall.html">Others</a>
+        <a href="mall.html"></a>
+      </div>
+    </div>
+    <section class="hero">
+      <h1>It's Time to Wasteless !</h1>
+      <h2>Zero Waste Lifestyle Select Shop</h2>
+      <h3></h3>
+    </section>
+    <section class="products">
+      <div class="subtitle">
+        <h1 class="underline--magical">zero waste products</h1>
+      </div>
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/1.png') }}" />
+        <span> Ugly Shampoo Bar</span>
+        <span> $ 7.00</span>
+      </div>
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/2.jpg') }}" />
+        <span> Ugly Shampoo Bar</span>
+        <span> $ 7.00</span>
+      </div>
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/3.jpg') }}" />
+        <span> Ugly Shampoo Bar</span>
+        <span> $ 7.00</span>
+      </div>
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/1.png') }}" />
+        <span> Ugly Shampoo Bar</span>
+        <span> $ 7.00</span>
+      </div>
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/1.png') }}" />
+        <span> Ugly Shampoo Bar</span>
+        <span> $ 7.00</span>
+      </div>
+      <div class="product">
+        <img src="{{ url_for('static', filename='images/3.jpg') }}" />
+        <span> Ugly Shampoo Bar</span>
+        <span> $ 7.00</span>
+      </div>
+    </section>
+
+    <section class="instagram">
+      <div class="subtitle">
+        <span class="underline--magical">View more on Instagram</span>
+      </div>
+      <div>
+        Zero waste is the conservation of all resources by means of responsible
+        production, consumption, reuse, and recovery of products, packaging, and
+        materials without burning and with no discharges to land, water, or air
+        that threaten the environment or human health.”
+      </div>
+    </section>
+
+    <script>
+      const navbar = document.querySelector(".navbar");
+      let title = document.querySelector(".title");
+      const navbtn = document.querySelector(".btn");
+      const sidenav = document.querySelector(".sidenav");
+      const closebtn = document.querySelector(".closebtn");
+      const category = document.querySelector(".category");
+
+      function scrollFunction(event) {
+        event.preventDefault();
+
+        if (window.pageYOffset > 60) {
+          navbar.style.padding = "20px 10px";
+          title.classList.add("title-shrink");
+        } else {
+          navbar.style.padding = "50px 10px"; //스크롤이 내려가지 않으면
+          title.classList.remove("title-shrink");
+        }
+      }
+
+      function openNav() {
+        sidenav.style.width = "300px";
+        category.classList.add("showList");
+      }
+
+      function closeNav(e) {
+        sidenav.style.width = "0";
+        category.classList.remove("showList");
+      }
+      closebtn.addEventListener("click", closeNav);
+      navbtn.addEventListener("click", openNav);
+      window.addEventListener("scroll", scrollFunction);
+    </script>
+  </body>
+</html>
