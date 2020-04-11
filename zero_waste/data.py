@@ -1,5 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+from pymongo import MongoClient
+client = MongoClient('localhost', 27017)
+db = client.dbproject
 
 
 def get_url():  # 키워드 함수
@@ -11,50 +14,52 @@ def get_url():  # 키워드 함수
 
     sidebar = soup.find("ul", {'class': 'product-categories'})
     atags = sidebar.find_all('a')
-    key_url = []
-    keys = []
+
+    key_url = []  # 카테고리 a태그의 href 태그
+    keys = []  # 카테고리명
     pages = []
-    last_pages = []
 
     for atag in atags:
-        key_url.append(atag.get('href')) # request할때 필요한 url 뒷부분
-        keys.append(atag.text)   
-    for i in range(len(key_url)):
+        key_url.append(atag.get('href'))
+        keys.append(atag.text)  # request할때 필요한 url 뒷부분과 카테고리 리스트
+    for i in range(len(key_url)):  # 14개의 카테고리가 있어서 총 14번 돌아감
         keyword = key_url[i]
         result = requests.get(f"https://zerowastestore.com{keyword}")
+
+        # 각 카테고리별 총 페이지수 추출하기
         soup = BeautifulSoup(result.text, 'html.parser')
         links = soup.select(
             '.products-footer > .shopify-pagination > ul > li > a')
         if len(links) is 0:
             pages.append(1)
         else:
-            for link in links[:-1]:
-                pages.append(int(link.text))
+            pages.append(int(links[-2].text))
 
-        if len(pages) < 2:
-            last_pages.append(pages[0])
-        else:
-            last_pages.append(pages[-1])  # 각 카테고리별 마지막 페이지번호 추출
+        # print('카테고리: ', keys[i], '****************************')
 
-        for k in range(len(last_pages)):
-            if i != k:
-                continue  # 위에 돌아가는 반복문 멈추게 하기 위해
-            else:
-                subpage = last_pages[k]+1  # 각각의 페이지들을 범위로 새로 만들기 위해
-                for j in range(1, subpage):
-                    final_url = f"https://zerowastestore.com/{keyword}?page={j}"
+        # 각 카테고리별 페이지 수 만큼 반복되는 반복문 만들기
+        for j in range(1, pages[i]+1):
+            res = requests.get(
+                f"https://zerowastestore.com/{keyword}?page={j}")
+            data = BeautifulSoup(res.text, 'html.parser')
+            products = data.find('div', {'class': 'jas_contain'})
+            product = products.find_all(
+                'div', {'class': 'product-grid-item'})
+            for one in product:
+                title = one.select_one('.product-title').text
+                price = one.select_one('.price').text
+                img_tag = one.select_one(
+                    '.product-element-top > a').get('href')
+                img_url = f"https://zerowastestore.com{img_tag}"
+            # print(j, '쪽')
+                doc = {
 
-                    res = requests.get(final_url)
-                    data = BeautifulSoup(res.text, 'html.parser')
-                    products = data.find('div', {'class': 'jas_contain'})
-                    product = data.find_all(
-                        'div', {'class': 'product-grid-item'})
-                    for one in product:
-                        title = one.select_one('.product-title').text
-                        price = one.select_one('.price').text
-                        print(title, price)
-
-    # print(title, price)
+                    'category': keys[i],
+                    'title': title,
+                    'price': price,
+                    'img_url': img_url
+                }
+                db.zerowastestore.insert_one(doc)
 
 
 if __name__ == "__main__":
