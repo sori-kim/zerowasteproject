@@ -1,20 +1,14 @@
+from flask import Flask, render_template, jsonify, request
 import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
-from flask import Flask, render_template
-app = Flask(__name__)
 
 
 client = MongoClient('localhost', 27017)
 db = client.dbproject
 
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-
-def get_url():  # 키워드 함수
+def get_info():
     url = "https://zerowastestore.com/collections/all"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
@@ -75,5 +69,35 @@ def get_url():  # 키워드 함수
                 # db.zerowastestore.insert_one(doc)
 
 
+def main_info():
+    url = "https://zerowastestore.com/"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+    result = requests.get(url, headers=headers)
+    soup = BeautifulSoup(result.text, 'html.parser')
+    products = soup.find('div', {'class': 'jas_contain'})
+    product = products.find_all(
+        'div', {'class': 'product-grid-item'})
+    for one in product:
+        main_title = one.select_one('.product-title').text
+        main_price = one.select_one('.price').text
+        main_img_h = one.select_one(
+            '.product-element-top > a').get('href')
+        main_img_url = f"https://zerowastestore.com{main_img_h}"
+        main_img_s = one.select_one(
+            '.product-element-top > a > img').get('src')
+        main_img_src = f"https:{main_img_s}"
+
+        main_doc = {
+            'category': 'arrival',
+            'main_title': main_title,
+            'main_price': main_price,
+            'main_img_url': main_img_url,
+            'main_img_src': main_img_src
+        }
+        db.zerowastestore.insert_one(main_doc)
+
+
 if __name__ == "__main__":
-    app.run('0.0.0.0', port=5000, debug=True)
+    # get_info()
+    main_info()

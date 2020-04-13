@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename='styles.css')}}"
-    />
+    <title>Wasteless : shop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='shop.css')}}" />
     <link rel="stylesheet" href="{{url_for('static', filename='reset.css')}}" />
     <script
       src="https://kit.fontawesome.com/3ceb02a9a3.js"
@@ -24,9 +22,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
-    <title>Waste-less</title>
   </head>
+
   <body>
     <header class="navbar">
       <nav>
@@ -35,39 +32,43 @@
             <a href="{{url_for('shop')}}"> Shop</a>
           </li>
           <li>
-            <a class="title" href="/">Waste-less</a>
+            <a href="/" class="title">Waste-less</a>
           </li>
           <li><a href="#"> about</a></li>
         </ul>
       </nav>
     </header>
 
-    <section class="hero">
-      <div><mark style="background-color: #f4dd53">It's Time to Wasteless !</mark style="background-color: #f4dd53"></div>
-      <h2><mark style="background-color: #f4dd53">Zero Waste Life style</mark></h2>
-      <h2><mark style="background-color: #f4dd53">Select Shop</mark></h2>
-    </section>
-    <section class="products" id="products-area">
-      <div class="subtitle">
-        <h1>Selected New Arrivals</h1>
+    <div class="sidenav">
+      <div class="category">
+        <span>Show by Category</span>
+        <a href="{{url_for('cleaning')}}">Cleaning</a>
+        <a onclick="getHaircare()">Hair Care</a>
+        <a onclick="getHome()">Home</a>
+        <a href="#">Kitchen</a>
+        <a onclick="">Makeup</a>
+        <a onclick="">Kids & Baby</a>
+        <a onclick="">Oral Hygiene</a>
+        <a onclick="">Personal Hygiene</a>
+        <a onclick="">Skin Care</a>
+        <a href="#">Travel</a>
+        <a onclick="">Others</a>
       </div>
-      
-      </div>
-    </section>
+    </div>
 
-    <section class="instagram">
-      <div class="subtitle">
-        <span>View more on Instagram</span>
-      </div>
-    
-    </section>
-    <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='design.js') }}"
-    ></script>
+    <div class="products" id="products-area"></div>
+
+    <div class="load_more_container">
+      <button onclick="loadMore()" class="load_more">더보기</button>
+    </div>
+
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='shop.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='design.js') }}"
     ></script>
   </body>
 </html>
