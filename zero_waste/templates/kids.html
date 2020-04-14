@@ -22,16 +22,10 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
     <script>
       $(document).ready(function () {
-        getCleaning();
+        getKids();
       });
-
-      function loadMore() {
-        pageNo += 1;
-        getCleaning();
-      }
     </script>
   </head>
 
@@ -68,10 +62,6 @@
     </div>
 
     <div class="products" id="products-area"></div>
-
-    <div class="load_more_container">
-      <button onclick="loadMore()" class="load_more">Load More</button>
-    </div>
 
     <script
       type="text/javascript"

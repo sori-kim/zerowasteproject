@@ -1,9 +1,5 @@
 let pageNo = 1;
 
-$(document).ready(function () {
-  arrival(), getAll(), getCleaning(), getHaircare();
-});
-
 function arrival() {
   $.ajax({
     url: "/api/new",
@@ -42,36 +38,6 @@ function arrival() {
   });
 }
 
-function getAll() {
-  $.ajax({
-    url: "/api/all?page=${pageNo}",
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <a href="${img_url}"><div class="product">
-                <img src="${image}">
-                <div class="title">${title}</div>
-                <div class="price">${price}</div>
-                <div class="shop">seller: Zero waste store</div>
-            </div></a>
-          `;
-
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
 function getCleaning() {
   $.ajax({
     url: `/api/cleaning?page=${pageNo}`,
@@ -88,13 +54,13 @@ function getCleaning() {
         let img_url = response[i]["img_url"];
 
         let html = `
-        <a href="${img_url}"><div class="product">
-                <img src="${image}">
-                <div class="title">${title}</div>
-                <div class="price">${price}</div>
-                <div class="shop">seller: Zero waste store</div>
-            </div></a>
-          `;
+  <a href="${img_url}"><div class="product">
+          <img src="${image}">
+          <div class="title">${title}</div>
+          <div class="price">${price}</div>
+          <div class="shop">seller: Zero waste store</div>
+      </div></a>
+    `;
 
         $("#products-area").append(html);
       }
@@ -104,13 +70,13 @@ function getCleaning() {
 
 function getHaircare() {
   $.ajax({
-    url: "/api/haircare",
+    url: `/api/haircare?page=${pageNo}`,
     type: "GET",
     data: {},
     success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
+      // if (pageNo === 1) {
+      //   $("#products-area").empty();
+      // }
 
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
@@ -119,13 +85,13 @@ function getHaircare() {
         let img_url = response[i]["img_url"];
 
         let html = `
-        <a href="${img_url}"><div class="product">
-            <img src="${image}">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-            <div class="shop">seller: Zero waste store</div>
-        </div></a>
-  `;
+  <a href="${img_url}"><div class="product">
+      <img src="${image}">
+      <div class="title">${title}</div>
+      <div class="price">${price}</div>
+      <div class="shop">seller: Zero waste store</div>
+  </div></a>
+`;
         $("#products-area").append(html);
       }
     },
@@ -134,14 +100,13 @@ function getHaircare() {
 
 function getHome() {
   $.ajax({
-    url: "/api/home",
+    url: `/api/home?page=${pageNo}`,
     type: "GET",
     data: {},
     success: function (response) {
       if (pageNo === 1) {
         $("#products-area").empty();
       }
-
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
         let image = response[i]["img_src"].replace("50x50", "300x300");
@@ -149,20 +114,277 @@ function getHome() {
         let img_url = response[i]["img_url"];
 
         let html = `
-          <a href="${img_url}"><div class="product">
-              <img src="${image}">
-              <div class="title">${title}</div>
-              <div class="price">${price}</div>
-              <div class="shop">seller: Zero waste store</div>
-          </div></a>
-    `;
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
         $("#products-area").append(html);
       }
     },
   });
 }
 
-function loadMore() {
-  pageNo += 1;
-  getCleaning(), getHaircare(), getHome();
+function getKitchen() {
+  $.ajax({
+    url: `/api/kitchen?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let price = response[i]["price"];
+        let img_url = response[i]["img_url"];
+
+        let html = `
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
+        $("#products-area").append(html);
+      }
+    },
+  });
 }
+
+function getMakeup() {
+  $.ajax({
+    url: `/api/makeup?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let price = response[i]["price"];
+        let img_url = response[i]["img_url"];
+
+        let html = `
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
+        $("#products-area").append(html);
+      }
+    },
+  });
+}
+
+function getKids() {
+  $.ajax({
+    url: `/api/kids?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let price = response[i]["price"];
+        let img_url = response[i]["img_url"];
+
+        let html = `
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
+        $("#products-area").append(html);
+      }
+    },
+  });
+}
+
+function getOral() {
+  $.ajax({
+    url: `/api/oral?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let price = response[i]["price"];
+        let img_url = response[i]["img_url"];
+
+        let html = `
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
+        $("#products-area").append(html);
+      }
+    },
+  });
+}
+
+function getPersonal() {
+  $.ajax({
+    url: `/api/personal?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let price = response[i]["price"];
+        let img_url = response[i]["img_url"];
+
+        let html = `
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
+        $("#products-area").append(html);
+      }
+    },
+  });
+}
+
+function getTravel() {
+  $.ajax({
+    url: `/api/travel?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let price = response[i]["price"];
+        let img_url = response[i]["img_url"];
+
+        let html = `
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
+        $("#products-area").append(html);
+      }
+    },
+  });
+}
+
+function getSkincare() {
+  $.ajax({
+    url: `/api/skincare?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let price = response[i]["price"];
+        let img_url = response[i]["img_url"];
+
+        let html = `
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
+        $("#products-area").append(html);
+      }
+    },
+  });
+}
+
+function getOthers() {
+  $.ajax({
+    url: `/api/others?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let price = response[i]["price"];
+        let img_url = response[i]["img_url"];
+
+        let html = `
+    <a href="${img_url}"><div class="product">
+        <img src="${image}">
+        <div class="title">${title}</div>
+        <div class="price">${price}</div>
+        <div class="shop">seller: Zero waste store</div>
+    </div></a>
+`;
+        $("#products-area").append(html);
+      }
+    },
+  });
+}
+
+// function getAll() {
+//   $.ajax({
+//     url: "/api/all?page=${pageNo}",
+//     type: "GET",
+//     data: {},
+//     success: function (response) {
+//       if (pageNo === 1) {
+//         $("#products-area").empty();
+//       }
+//       for (let i = 0; i < response.length; i++) {
+//         let title = response[i]["title"];
+//         let image = response[i]["img_src"].replace("50x50", "300x300");
+//         let price = response[i]["price"];
+//         let img_url = response[i]["img_url"];
+
+//         let html = `
+//         <a href="${img_url}"><div class="product">
+//                 <img src="${image}">
+//                 <div class="title">${title}</div>
+//                 <div class="price">${price}</div>
+//                 <div class="shop">seller: Zero waste store</div>
+//             </div></a>
+//           `;
+
+//         $("#products-area").append(html);
+//       }
+//     },
+//   });
+// }

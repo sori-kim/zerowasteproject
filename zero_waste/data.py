@@ -98,6 +98,14 @@ def main_info():
         db.zerowastestore.insert_one(main_doc)
 
 
+def update_db():
+    update_soap = db.zerowastestore.update_many(
+        {'category': 'Soap Bars'}, {'$set': {'category': 'Others'}})
+    update_zwk = db.zerowastestore.update_many(
+        {'category': 'ZWS Kits'}, {'$set': {'category': 'Others'}})
+    update_zws = db.zerowastestore.update_many({'category': 'ZWS Sustainables'}, {
+                                               '$set': {'category': 'Others'}})
+
+
 if __name__ == "__main__":
     # get_info()
-    main_info()
