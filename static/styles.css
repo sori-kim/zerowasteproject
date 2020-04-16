@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Calistoga&familly=Martel&family=Caladea&family=Merriweather&display=swap");
+.hero h1,
+.hero h2,
+.hero h3 {
+  margin-left: 50px;
+}
+.instagram .subtitle,
+.products .subtitle {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+}
+* {
+  box-sizing: border-box;
+}
+.showList a,
+a {
+  text-decoration: none;
+  color: inherit;
+}
+body {
+  padding: 100px 140px 0;
+}
+
+.navbar {
+  background: #f4dd53;
+  overflow: hidden;
+  padding: 25px 10px;
+  transition: 1s;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  font-size: 23px;
+  font-weight: 700;
+  align-self: flex-end;
+  font-family: "Calistoga", cursive;
+  border: 2px solid black;
+}
+.navbar a.title {
+  font-size: 50px;
+}
+.navbar .title-shrink {
+  transition: 0.4s;
+  font-size: 40px !important;
+}
+
+.navbar a:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.hero {
+  height: 100vh;
+  background-image: url("https://image.freepik.com/free-vector/floral-patterned-background_53876-66667.jpg");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.8);
+}
+.hero div {
+  font-family: "Calistoga", cursive;
+  font-size: 60px;
+  margin-top: 400px;
+  margin-bottom: 30px;
+}
+.hero h2 {
+  font-size: 30px;
+  font-family: "Merriweather", serif;
+}
+
+.products {
+  width: 80%;
+  height: 150vh;
+  margin: 0 auto;
+  padding-top: 100px;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 10% repeat(2 1fr);
+}
+
+.products .product {
+  display: grid;
+  grid-template-rows: 20% 50% 30%;
+  height: 60vh;
+  justify-items: center;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
+  border: 3px solid black;
+  border-radius: 25px;
+}
+
+.products .product .like {
+  font-size: 30px;
+  align-self: center;
+  justify-self: flex-end;
+  margin-right: 40px;
+  border-color: rgba(0, 0, 0, 0.9);
+}
+
+.products .product .link {
+  position: relative;
+  display: inline-block;
+}
+
+.products .product .image {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  display: block;
+  position: relative;
+}
+
+.products .product .link .after {
+  display: none;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  font-size: 60px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.products .product .link:hover .after {
+  display: block;
+}
+
+.products .product .link:hover .image {
+  opacity: 0.4;
+}
+
+.products .product .description {
+  align-self: center;
+  font-family: "Merriweather", serif;
+  text-align: center;
+}
+
+.products .product .description .title {
+  color: black;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.products .product .description .price {
+  margin-bottom: 10px;
+}
+
+.products .product .description .shop {
+  font-size: 15px;
+}
+
+.products .subtitle {
+  grid-column: 1 / 4;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  font-family: "Calistoga", cursive;
+}
+
+.instagram {
+  margin-top: 50px;
+  height: 50vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 10% repeat(2, 1fr);
+}
+
+.instagram .subtitle {
+  grid-column: 1 / span 3;
+  display: flex;
+  justify-content: center;
+  font-family: "Calistoga", cursive;
+}

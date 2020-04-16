@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Wasteless : shop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='shop.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='reset.css')}}" />
+    <script
+      src="https://kit.fontawesome.com/3ceb02a9a3.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        getKitchen();
+      });
+      function loadMore() {
+        pageNo += 1;
+        getKitchen();
+      }
+    </script>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <nav>
+        <ul>
+          <li>
+            <a href="{{url_for('shop')}}"> Shop</a>
+          </li>
+          <li>
+            <a href="/" class="title">Waste-less</a>
+          </li>
+          <li><a href="#"> about</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="sidenav">
+      <div class="category">
+        <span>Show by Category</span>
+        <a href="{{url_for('cleaning')}}">Cleaning</a>
+        <a href="{{url_for('haircare')}}">Hair Care</a>
+        <a href="{{url_for('forthehome')}}">Home</a>
+        <a href="{{url_for('kitchen')}}">Kitchen</a>
+        <a href="{{url_for('makeup')}}">Makeup</a>
+        <a href="{{url_for('kids')}}">Kids & Baby</a>
+        <a href="{{url_for('oral')}}">Oral Hygiene</a>
+        <a href="{{url_for('personal')}}">Personal Hygiene</a>
+        <a href="{{url_for('skincare')}}">Skin Care</a>
+        <a href="{{url_for('travel')}}">Travel</a>
+        <a href="{{url_for('others')}}">Others</a>
+      </div>
+    </div>
+
+    <div class="subtitle">
+      <h1>Category : Kitchen</h1>
+    </div>
+
+    <div class="products" id="products-area"></div>
+
+    <div class="load_more_container">
+      <button data-hover="click me!" onclick="loadMore()" class="load_more">
+        <div>Load More</div>
+      </button>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='shop.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='design.js') }}"
+    ></script>
+  </body>
+</html>
