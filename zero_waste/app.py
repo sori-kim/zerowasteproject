@@ -16,6 +16,11 @@ def shop():
     return render_template('shop.html')
 
 
+@app.route('/like')
+def like():
+    return render_template('wishlist.html')
+
+
 @app.route('/shop/cleaning')
 def cleaning():
     return render_template('cleaning.html')
@@ -216,6 +221,39 @@ def item_others():
     items = list(
         db.zerowastestore.find(
             {'category':  "Others"}, {'_id': 0}).limit(limit).skip(offset)
+    )
+    return jsonify(items)
+
+
+@app.route('/api/like', methods=['POST'])
+def item_like():
+    title_receive = request.form['title_give']
+    price_receive = request.form['price_give']
+    image_url_receive = request.form['image_url_give']
+    image_src_receive = request.form['image_src_give']
+
+    wish = {
+        'title': title_receive,
+        'price': price_receive,
+        'image_url': image_url_receive,
+        'image_src': image_src_receive
+    }
+    db.wishlist.insert_one(wish)
+
+    item = list(db.wishlist.find({}, {'_id': 0}))
+
+    return jsonify(item)
+
+
+@app.route('/api/wish', methods=['GET'])
+def item_wish():
+    page = int(request.args.get('page', 1))
+    limit = 9
+    offset = (page - 1) * limit
+
+    items = list(
+        db.wishlist.find({},
+                         {'_id': 0}).limit(limit).skip(offset)
     )
     return jsonify(items)
 

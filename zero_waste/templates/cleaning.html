@@ -7,6 +7,7 @@
     <title>Wasteless : shop</title>
     <link rel="stylesheet" href="{{url_for('static', filename='shop.css')}}" />
     <link rel="stylesheet" href="{{url_for('static', filename='reset.css')}}" />
+
     <script
       src="https://kit.fontawesome.com/3ceb02a9a3.js"
       crossorigin="anonymous"
@@ -45,7 +46,7 @@
           <li>
             <a href="/" class="title">Waste-less</a>
           </li>
-          <li><a href="#"> about</a></li>
+          <li><a href="{{url_for('like')}}"> Wish List </a></li>
         </ul>
       </nav>
     </header>
@@ -67,10 +68,16 @@
       </div>
     </div>
 
+    <div class="subtitle">
+      <h1>Category : Cleaning</h1>
+    </div>
+
     <div class="products" id="products-area"></div>
 
     <div class="load_more_container">
-      <button onclick="loadMore()" class="load_more">Load More</button>
+      <button data-hover="click me!" onclick="loadMore()" class="load_more">
+        <div>Load More</div>
+      </button>
     </div>
 
     <script

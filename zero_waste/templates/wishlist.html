@@ -22,14 +22,14 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
     <script>
       $(document).ready(function () {
-        getHome();
+        getWish();
       });
+
       function loadMore() {
         pageNo += 1;
-        getHome();
+        getWish();
       }
     </script>
   </head>
@@ -44,7 +44,7 @@
           <li>
             <a href="/" class="title">Waste-less</a>
           </li>
-          <li><a href="#"> about</a></li>
+          <li><a href="{{url_for('like')}}"> Wish List </a></li>
         </ul>
       </nav>
     </header>
@@ -65,8 +65,9 @@
         <a href="{{url_for('others')}}">Others</a>
       </div>
     </div>
+
     <div class="subtitle">
-      <h1>Category : home</h1>
+      <h1>Wish List</h1>
     </div>
 
     <div class="products" id="products-area"></div>
@@ -76,7 +77,6 @@
         <div>Load More</div>
       </button>
     </div>
-
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='shop.js') }}"

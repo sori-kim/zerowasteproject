@@ -20,13 +20,12 @@ a {
 }
 body {
   padding: 100px 140px 0;
-  font-family: "Merriweather", serif;
 }
 
 .navbar {
-  background-color: #fff;
+  background: #f4dd53;
   overflow: hidden;
-  padding: 40px 10px;
+  padding: 25px 10px;
   transition: 1s;
   width: 100%;
   position: fixed;
@@ -37,6 +36,7 @@ body {
   font-weight: 700;
   align-self: flex-end;
   font-family: "Calistoga", cursive;
+  border: 2px solid black;
 }
 .navbar a.title {
   font-size: 50px;
@@ -76,24 +76,82 @@ nav ul {
 }
 
 .products {
-  width: 70%;
+  width: 80%;
+  height: 150vh;
   margin: 0 auto;
   padding-top: 100px;
   display: grid;
+  grid-gap: 30px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 10% repeat(2 1fr);
 }
 
-.products img {
-  width: 300px;
-}
 .products .product {
   display: grid;
-  grid-template-rows: 90% repeat(2 1fr);
-  height: 400px;
+  grid-template-rows: 20% 50% 30%;
+  height: 60vh;
   justify-items: center;
   font-size: 18px;
   color: rgba(0, 0, 0, 0.6);
+  border: 3px solid black;
+  border-radius: 25px;
+}
+
+.products .product .like {
+  font-size: 30px;
+  align-self: center;
+  justify-self: flex-end;
+  margin-right: 40px;
+  border-color: rgba(0, 0, 0, 0.9);
+}
+
+.products .product .link {
+  position: relative;
+  display: inline-block;
+}
+
+.products .product .image {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  display: block;
+  position: relative;
+}
+
+.products .product .link .after {
+  display: none;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  font-size: 60px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.products .product .link:hover .after {
+  display: block;
+}
+
+.products .product .link:hover .image {
+  opacity: 0.4;
+}
+
+.products .product .description {
+  align-self: center;
+  font-family: "Merriweather", serif;
+  text-align: center;
+}
+
+.products .product .description .title {
+  color: black;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.products .product .description .price {
+  margin-bottom: 10px;
+}
+
+.products .product .description .shop {
+  font-size: 15px;
 }
 
 .products .subtitle {

@@ -10,29 +10,25 @@ function arrival() {
         let main_title = response[i]["main_title"];
         let main_image = response[i]["main_img_src"].replace(
           "50x50",
-          "300x300"
+          "230x230"
         );
         let main_price = response[i]["main_price"];
         let main_img_url = response[i]["main_img_url"];
 
         let main_html = `
         <div class="product">
-        <a href="${main_img_url}">
-        <img src="${main_image}"></a>
-        <div class="title">${main_title}</div>
-        <div class="price">${main_price}</div>
-        <div class="shop">Seller: Zero waste store</div>
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${main_img_url}">
+           <img class="image" src="${main_image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${main_title}</div>
+            <div class="price">${main_price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
         </div>
-          `;
+    `;
         $("#products-area").append(main_html);
-        $(document)
-          .on("mouseover", "img", function (e) {
-            $(this).css("opacity", "0.3");
-          })
-          .on("mouseleave", "img", function (e) {
-            $(this).css("opacity", "1");
-          });
-        $(".title").css("font-weight", "700");
       }
     },
   });
@@ -49,19 +45,22 @@ function getCleaning() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
-
         let html = `
-  <a href="${img_url}"><div class="product">
-          <img src="${image}">
-          <div class="title">${title}</div>
-          <div class="price">${price}</div>
-          <div class="shop">seller: Zero waste store</div>
-      </div></a>
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
     `;
-
         $("#products-area").append(html);
       }
     },
@@ -74,24 +73,28 @@ function getHaircare() {
     type: "GET",
     data: {},
     success: function (response) {
-      // if (pageNo === 1) {
-      //   $("#products-area").empty();
-      // }
-
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-  <a href="${img_url}"><div class="product">
-      <img src="${image}">
-      <div class="title">${title}</div>
-      <div class="price">${price}</div>
-      <div class="shop">seller: Zero waste store</div>
-  </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -109,18 +112,23 @@ function getHome() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -138,18 +146,23 @@ function getKitchen() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -167,18 +180,23 @@ function getMakeup() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -196,18 +214,23 @@ function getKids() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -225,18 +248,23 @@ function getOral() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -254,18 +282,23 @@ function getPersonal() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -283,18 +316,23 @@ function getTravel() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -312,18 +350,23 @@ function getSkincare() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
@@ -341,50 +384,97 @@ function getOthers() {
       }
       for (let i = 0; i < response.length; i++) {
         let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "300x300");
+        let image = response[i]["img_src"].replace("50x50", "230x230");
         let price = response[i]["price"];
         let img_url = response[i]["img_url"];
 
         let html = `
-    <a href="${img_url}"><div class="product">
-        <img src="${image}">
-        <div class="title">${title}</div>
-        <div class="price">${price}</div>
-        <div class="shop">seller: Zero waste store</div>
-    </div></a>
-`;
+        <div class="product">
+          <a href ="#" class="like"><i class="far fa-heart"></i></a>
+         <a class="link" href="${img_url}">
+           <img class="image" src="${image}">
+           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+         <div class="description">
+            <div class="title">${title}</div>
+            <div class="price">${price}</div>
+           <div class="shop">Seller: Zero waste store</div>
+          </div>
+        </div>
+    `;
         $("#products-area").append(html);
       }
     },
   });
 }
 
-// function getAll() {
-//   $.ajax({
-//     url: "/api/all?page=${pageNo}",
-//     type: "GET",
-//     data: {},
-//     success: function (response) {
-//       if (pageNo === 1) {
-//         $("#products-area").empty();
-//       }
-//       for (let i = 0; i < response.length; i++) {
-//         let title = response[i]["title"];
-//         let image = response[i]["img_src"].replace("50x50", "300x300");
-//         let price = response[i]["price"];
-//         let img_url = response[i]["img_url"];
+$(document).on("click", ".like", function wishclick() {
+  $(this).children().addClass("fas");
+  $(this).css("color", "#f4dd53");
+  let image_url = $(this).siblings("a").attr("href");
+  let image_src = $(this).siblings("a").children("img").attr("src");
+  let title = $(this).siblings("div").children(".title").text();
+  let price = $(this).siblings("div").children(".price").text();
 
-//         let html = `
-//         <a href="${img_url}"><div class="product">
-//                 <img src="${image}">
-//                 <div class="title">${title}</div>
-//                 <div class="price">${price}</div>
-//                 <div class="shop">seller: Zero waste store</div>
-//             </div></a>
-//           `;
+  let wishItem = $(this).parent(".product");
 
-//         $("#products-area").append(html);
-//       }
-//     },
-//   });
-// }
+  function addLocalStorage() {
+    localStorage.setItem("wishItem", JSON.stringify(wishItem));
+  }
+
+  function getLocalStorage() {
+    localStorage.getItem("wishItem", JSON.parse(wishItem));
+  }
+
+  console.log(jsonify(wishItem));
+
+  // $.ajax({
+  //   // beforeSend: function (request) {
+  //   //   request.setRequestHeader("Authority", authorizationToken);
+  //   // },
+  //   url: "/api/like",
+  //   type: "POST",
+  //   data: {
+  //     title_give: title,
+  //     price_give: price,
+  //     image_url_give: image_url,
+  //     image_src_give: image_src,
+  //   },
+  //   success: function () {
+  //     addLocalStorage(), getLocalStorage();
+  //   },
+  // });
+});
+
+function getWish() {
+  $.ajax({
+    url: `/api/wish?page=${pageNo}`,
+    type: "GET",
+    data: {},
+    success: function (response) {
+      if (pageNo === 1) {
+        $("#products-area").empty();
+      }
+      for (let i = 0; i < response.length; i++) {
+        let title = response[i]["title"];
+        let price = response[i]["price"];
+        let img_url = response[i]["image_url"];
+        let img_src = response[i]["image_src"];
+
+        let html = `
+      <div class="product">
+        <a href ="#" class="like"><i class="far fa-heart"></i></a>
+       <a class="link" href="${img_url}">
+         <img class="image" src="${img_src}">
+         <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+       <div class="description">
+          <div class="title">${title}</div>
+          <div class="price">${price}</div>
+         <div class="shop">Seller: Zero waste store</div>
+        </div>
+      </div>
+  `;
+        $("#products-area").append(html);
+      }
+    },
+  });
+}

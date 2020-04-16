@@ -1,7 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Calistoga&familly=Martel&family=Caladea&family=Merriweather&display=swap");
-* {
+
+*,
+*:not(i):before,
+*:not(i):after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font: 300 1em/1.5 "Open Sans", "Helvetica Neue", Arial, sans-serif;
+  text-decoration: none;
 }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -10,11 +18,12 @@ a {
 body {
   padding: 0 140px;
   font-family: "Merriweather", serif;
+  height: 100%;
 }
 .navbar {
-  background-color: #fff;
+  background: #f4dd53;
   overflow: hidden;
-  padding: 40px 10px;
+  padding: 25px 10px;
   transition: 1s;
   width: 100%;
   position: fixed;
@@ -25,6 +34,7 @@ body {
   font-weight: 700;
   align-self: flex-end;
   font-family: "Calistoga", cursive;
+  border: 2px solid black;
 }
 .navbar a.title {
   font-size: 50px;
@@ -46,19 +56,20 @@ nav ul {
 }
 
 .sidenav {
-  width: 270px;
-  margin-top: 150px;
-  height: 100%;
+  width: 250px;
+  margin-top: 200px;
+  margin-left: 20px;
+  height: 72%;
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  background-color: #fff;
+  background: #f4dd53;
+  border: 2px solid black;
 }
 .sidenav .category {
   display: flex;
   flex-direction: column;
-  height: 60%;
+  justify-items: center;
   color: rgba(0, 0, 0, 0.8);
 }
 
@@ -69,6 +80,7 @@ nav ul {
   margin-bottom: 30px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   padding-bottom: 4px;
+  padding-top: 50px;
 }
 
 .sidenav .category a {
@@ -80,39 +92,147 @@ nav ul {
   color: rgba(0, 0, 0, 0.3);
 }
 
+.subtitle {
+  font-family: "Calistoga", cursive;
+  font-size: 40px;
+  margin-top: 150px;
+  margin-bottom: 30px;
+  margin-left: 330px;
+  text-transform: uppercase;
+}
+
 .products {
   width: 70%;
   margin: 0 auto;
   display: grid;
+  grid-gap: 30px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  margin-left: 270px;
-  margin-top: 150px;
+  grid-template-rows: repeat(3, 1fr);
+  margin-left: 330px;
   text-align: center;
 }
 
 .products .product {
   display: grid;
-  grid-template-rows: 70% repeat(3, 1fr);
-  height: 50vh;
+  grid-template-rows: 20% 50% 30%;
+  height: 60vh;
   justify-items: center;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
+  border: 3px solid black;
+  border-radius: 25px;
 }
-.products .product img {
-  width: 250px;
-  height: 250px;
+
+.products .product .like {
+  font-size: 30px;
+  align-self: center;
+  justify-self: flex-end;
+  margin-right: 40px;
+  color: black;
+}
+
+.products .product .link {
+  position: relative;
+  display: inline-block;
+}
+
+.products .product .image {
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  display: block;
+  position: relative;
+}
+
+.products .product .link .after {
+  display: none;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  font-size: 60px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.products .product .link:hover .after {
+  display: block;
+}
+
+.products .product .link:hover .image {
+  opacity: 0.4;
+}
+
+.products .product .description {
+  align-self: center;
+  font-family: "Merriweather", serif;
+  text-align: center;
+}
+
+.products .product .description .title {
+  color: black;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.products .product .description .price {
+  margin-bottom: 10px;
+}
+
+.products .product .description .shop {
+  font-size: 15px;
 }
 
 .load_more_container {
-  width: 100%;
-  height: 50px;
+  width: 70%;
+  margin: 10vh auto;
+  margin-left: 330px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  z-index: 99999;
 }
 
 .load_more {
-  width: 300px;
-  height: 40px;
+  background: transparent;
+  outline: none;
+  position: relative;
+  border: 2px solid #111;
+  padding: 15px 50px;
+  overflow: hidden;
 }
+
+.load_more:hover {
+  cursor: pointer;
+}
+/*button:before (attr data-hover)*/
+.load_more:hover:before {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.load_more:before {
+  content: attr(data-hover);
+  position: absolute;
+  top: 1.1em;
+  left: 0;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 800;
+  font-size: 0.8em;
+  opacity: 0;
+  transform: translate(-100%, 0);
+  transition: all 0.3s ease-in-out;
+}
+.load_more:hover div {
+  opacity: 0;
+  transform: translate(100%, 0);
+}
+.load_more div {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 800;
+  font-size: 0.8em;
+  transition: all 0.3s ease-in-out;
+}
+
+/* section.container {
+  min-width: 500px;
+  margin: 10% auto;
+  text-align: center;
+} */
