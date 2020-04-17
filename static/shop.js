@@ -414,32 +414,27 @@ $(document).on("click", ".like", function wishclick() {
   let image_src = $(this).siblings("a").children("img").attr("src");
   let title = $(this).siblings("div").children(".title").text();
   let price = $(this).siblings("div").children(".price").text();
-  let wishList = [];
   let wishItem = $(this).parent().clone().wrapAll("<div/>").parent().html();
   //클릭한 .product html태그
 
-  localStorage.setItem("wishList", wishItem);
-  localStorage.setItem("wishList", wishItem);
-  localStorage.setItem("wishList", wishItem);
-
-  // $.ajax({
-  //   url: "/api/like",
-  //   type: "POST",
-  //   data: {
-  //     title_give: title,
-  //     price_give: price,
-  //     image_url_give: image_url,
-  //     image_src_give: image_src,
-  //   },
-  //   success: function () {
-  //     addLocalStorage(), getLocalStorage();
-  //   },
-  // });
+  $.ajax({
+    url: "/api/like",
+    type: "POST",
+    header: "",
+    data: {
+      title_give: title,
+      price_give: price,
+      image_url_give: image_url,
+      image_src_give: image_src,
+    },
+    success: function () {},
+  });
 });
 
 function getWish() {
   $.ajax({
     url: `/api/wish?page=${pageNo}`,
+    headers: { "x-my-custom-header": "some value" },
     type: "GET",
     data: {},
     success: function (response) {
