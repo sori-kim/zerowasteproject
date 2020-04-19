@@ -22,16 +22,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
-    <script>
-      $(document).ready(function () {
-        getHome();
-      });
-      function loadMore() {
-        pageNo += 1;
-        getHome();
-      }
-    </script>
+    {% block js %} {% endblock %}
   </head>
 
   <body>
@@ -44,36 +35,39 @@
           <li>
             <a href="/" class="title">Waste-less</a>
           </li>
-          <li><a href="#"> about</a></li>
+          <li><a href="{{url_for('like')}}" class="like">Wish</a></li>
         </ul>
       </nav>
     </header>
 
     <div class="sidenav">
-      <div class="category">
+      <div
+        class="category"
+        id="category_list"
+        current_category="{{ category }}"
+      >
         <span>Show by Category</span>
-        <a href="{{url_for('cleaning')}}">Cleaning</a>
-        <a href="{{url_for('haircare')}}">Hair Care</a>
-        <a href="{{url_for('forthehome')}}">Home</a>
-        <a href="{{url_for('kitchen')}}">Kitchen</a>
-        <a href="{{url_for('makeup')}}">Makeup</a>
-        <a href="{{url_for('kids')}}">Kids & Baby</a>
-        <a href="{{url_for('oral')}}">Oral Hygiene</a>
-        <a href="{{url_for('personal')}}">Personal Hygiene</a>
-        <a href="{{url_for('skincare')}}">Skin Care</a>
-        <a href="{{url_for('travel')}}">Travel</a>
-        <a href="{{url_for('others')}}">Others</a>
+        <a href="{{url_for('product', category='cleaning')}}">Cleaning</a>
+        <a href="{{url_for('product', category='haircare')}}">Hair Care</a>
+        <a href="{{url_for('product', category='forthehome')}}">Home</a>
+        <a href="{{url_for('product', category='kitchen')}}">Kitchen</a>
+        <a href="{{url_for('product', category='makeup')}}">Makeup</a>
+        <a href="{{url_for('product', category='kids')}}">Kids & Baby</a>
+        <a href="{{url_for('product', category='oral')}}">Oral Hygiene</a>
+        <a href="{{url_for('product', category='personal')}}"
+          >Personal Hygiene</a
+        >
+        <a href="{{url_for('product', category='skincare')}}">Skin Care</a>
+        <a href="{{url_for('product', category='travel')}}">Travel</a>
+        <a href="{{url_for('product', category='others')}}">Others</a>
       </div>
     </div>
-    <div class="subtitle">
-      <h1>Category : home</h1>
-    </div>
 
-    <div class="products" id="products-area"></div>
+    {% block title %} {% endblock %} {% block products %}{% endblock %}
 
     <div class="load_more_container">
-      <button data-hover="click me!" onclick="loadMore()" class="load_more">
-        <div>Load More</div>
+      <button onclick="loadMore()" class="load_more">
+        <div data-hover="click me!">Load More</div>
       </button>
     </div>
 

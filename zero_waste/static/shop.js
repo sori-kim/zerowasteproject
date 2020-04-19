@@ -24,7 +24,7 @@ function arrival() {
          <div class="description">
             <div class="title">${main_title}</div>
             <div class="price">${main_price}</div>
-           <div class="shop">Seller: Zero waste store</div>
+           
           </div>
         </div>
     `;
@@ -34,447 +34,121 @@ function arrival() {
   });
 }
 
-function getCleaning() {
+function getProduct() {
+  const currentCategory = $("#category_list").attr("current_category") || "all";
   $.ajax({
-    url: `/api/cleaning?page=${pageNo}`,
+    url: `/api/product?page=${pageNo}&category=${currentCategory}`,
     type: "GET",
     data: {},
     success: function (response) {
       if (pageNo === 1) {
         $("#products-area").empty();
       }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
 
-function getHaircare() {
-  $.ajax({
-    url: `/api/haircare?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
+      let localStorageWish = localStorage.getItem("wish");
+      let wish = JSON.parse(localStorageWish) || [];
+
+      response.forEach(function (item) {
+        let title = item["title"];
+        let image = item["img_src"].replace("50x50", "230x230");
+        let price = item["price"];
+        let img_url = item["img_url"];
+
+        let hasWish = false;
+        if (wish.filter((w) => w.includes(`title="${title}"`)).length > 0) {
+          hasWish = true;
+        }
 
         let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
+            <div class="product" title="${title}">
+              <a href ="#" class="like"><i class="far fa-heart ${
+                hasWish ? "fas" : ""
+              }"></i></a>
+              <a class="link" href="${img_url}">
+                <img class="image" src="${image}">
+                <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
+              <div class="description">
+                <div class="title">${title}</div>
+                <div class="price">${price}</div>
+              
+              </div>
+            </div>
+        `;
+
         $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getHome() {
-  $.ajax({
-    url: `/api/home?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getKitchen() {
-  $.ajax({
-    url: `/api/kitchen?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getMakeup() {
-  $.ajax({
-    url: `/api/makeup?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getKids() {
-  $.ajax({
-    url: `/api/kids?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getOral() {
-  $.ajax({
-    url: `/api/oral?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getPersonal() {
-  $.ajax({
-    url: `/api/personal?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getTravel() {
-  $.ajax({
-    url: `/api/travel?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getSkincare() {
-  $.ajax({
-    url: `/api/skincare?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
-    },
-  });
-}
-
-function getOthers() {
-  $.ajax({
-    url: `/api/others?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let image = response[i]["img_src"].replace("50x50", "230x230");
-        let price = response[i]["price"];
-        let img_url = response[i]["img_url"];
-
-        let html = `
-        <div class="product">
-          <a href ="#" class="like"><i class="far fa-heart"></i></a>
-         <a class="link" href="${img_url}">
-           <img class="image" src="${image}">
-           <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-         <div class="description">
-            <div class="title">${title}</div>
-            <div class="price">${price}</div>
-           <div class="shop">Seller: Zero waste store</div>
-          </div>
-        </div>
-    `;
-        $("#products-area").append(html);
-      }
+      });
     },
   });
 }
 
 $(document).on("click", ".like", function wishclick() {
-  $(this).children().addClass("fas");
-  $(this).css("color", "#f4dd53");
-  let image_url = $(this).siblings("a").attr("href");
-  let image_src = $(this).siblings("a").children("img").attr("src");
-  let title = $(this).siblings("div").children(".title").text();
-  let price = $(this).siblings("div").children(".price").text();
+  const product = $(this).closest(".product");
+  const html = product.html();
+  const title = product.attr("title");
 
-  let wishItem = $(this).parent(".product");
+  if ($(this).find(".fa-heart").hasClass("fas")) {
+    deleteWish(title);
+    $(this).children().removeClass("fas");
+    $(this).css("color", "#fff");
+  } else {
+    $(this).children().addClass("fas");
+    $(this).css("color", "#f4dd53");
 
-  function addLocalStorage() {
-    localStorage.setItem("wishItem", JSON.stringify(wishItem));
+    if (html) {
+      let wishItem = `
+        <div class="product" title="${title}">
+          ${html}
+        </div>
+      `;
+
+      let localStorageWish = localStorage.getItem("wish");
+      let wish = JSON.parse(localStorageWish) || [];
+
+      if (
+        wish &&
+        wish.filter((w) => w.includes(`title="${title}"`)).length === 0
+      ) {
+        wish.push(wishItem);
+        localStorage.setItem("wish", JSON.stringify(wish));
+      }
+    }
   }
-
-  function getLocalStorage() {
-    localStorage.getItem("wishItem", JSON.parse(wishItem));
-  }
-
-  console.log(jsonify(wishItem));
-
-  // $.ajax({
-  //   // beforeSend: function (request) {
-  //   //   request.setRequestHeader("Authority", authorizationToken);
-  //   // },
-  //   url: "/api/like",
-  //   type: "POST",
-  //   data: {
-  //     title_give: title,
-  //     price_give: price,
-  //     image_url_give: image_url,
-  //     image_src_give: image_src,
-  //   },
-  //   success: function () {
-  //     addLocalStorage(), getLocalStorage();
-  //   },
-  // });
 });
 
 function getWish() {
-  $.ajax({
-    url: `/api/wish?page=${pageNo}`,
-    type: "GET",
-    data: {},
-    success: function (response) {
-      if (pageNo === 1) {
-        $("#products-area").empty();
-      }
-      for (let i = 0; i < response.length; i++) {
-        let title = response[i]["title"];
-        let price = response[i]["price"];
-        let img_url = response[i]["image_url"];
-        let img_src = response[i]["image_src"];
+  let localStorageWish = localStorage.getItem("wish");
+  let wish = JSON.parse(localStorageWish) || [];
 
-        let html = `
-      <div class="product">
-        <a href ="#" class="like"><i class="far fa-heart"></i></a>
-       <a class="link" href="${img_url}">
-         <img class="image" src="${img_src}">
-         <div class="after"><i class="fas fa-sign-in-alt"></i></div></a>
-       <div class="description">
-          <div class="title">${title}</div>
-          <div class="price">${price}</div>
-         <div class="shop">Seller: Zero waste store</div>
-        </div>
-      </div>
-  `;
-        $("#products-area").append(html);
-      }
-    },
+  wish.forEach(function (item) {
+    if (item.length > 0) {
+      const newItem = item.replace(
+        '<i class="far fa-heart "',
+        '<i class="far fa-heart fas"'
+      );
+      $("#products-area").append(newItem);
+    }
   });
+}
+
+function deleteWish(title) {
+  let localStorageWish = localStorage.getItem("wish");
+  let wish = JSON.parse(localStorageWish) || [];
+
+  const isWish = $("#products-area").attr("isWish") === "true";
+
+  let newWish = wish.filter((w) => !w.includes(`title="${title}"`));
+  localStorage.setItem("wish", JSON.stringify(newWish));
+
+  if (isWish) {
+    $("#products-area").empty();
+    newWish.forEach(function (item) {
+      if (item.length > 0) {
+        const newItem = item.replace(
+          '<i class="far fa-heart "',
+          '<i class="far fa-heart fas"'
+        );
+        $("#products-area").append(newItem);
+      }
+    });
+  }
 }

@@ -131,6 +131,14 @@ nav ul {
   color: black;
 }
 
+.products .product .delete {
+  font-size: 30px;
+  align-self: center;
+  justify-self: flex-end;
+  margin-right: 40px;
+  color: black;
+}
+
 .products .product .link {
   position: relative;
   display: inline-block;

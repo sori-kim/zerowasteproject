@@ -1,18 +1,17 @@
 {% extends 'product_template.html' %} {% block js %}
 <script>
   $(document).ready(function () {
-    getWish();
+    getProduct();
   });
-
   function loadMore() {
     pageNo += 1;
-    getWish();
+    getProduct();
   }
 </script>
-{% endblock %} {% block title %}
+{% endblock %}{% block title %}
 <div class="subtitle">
-  <h1>Wish List</h1>
+  <h1>Category : Personal Hygiene</h1>
 </div>
 {% endblock %} {% block products %}
-<div class="products" id="products-area" isWish="true"></div>
+<div class="products" id="products-area" isWish="false"></div>
 {% endblock %}
